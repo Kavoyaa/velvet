@@ -1,21 +1,26 @@
 #include <SFML/Graphics/Color.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <velvet/widgets/Button.hpp>
+#include <iostream>
 
-Button::Button(float x, float y, float width, float height, std::string label) {
+Button::Button(float x, float y, float width, float height, std::string label, sf::Color borderColor, int borderThickness) {
     hovered = false;
     clicked = false;
-    primaryColor = sf::Color::White;
+
+    primaryColor = sf::Color(164, 71, 251);
     hoverColor = sf::Color::Yellow;
     clickColor = sf::Color::Red;
+
 
     shape.setSize(sf::Vector2f(width, height));
 
     shape.setPosition(x, y);
     shape.setFillColor(primaryColor);
 
-    // shape.setOutlineColor(sf::Color::White);
-    // shape.setOutlineThickness(2);
+    if(borderThickness != 0 && borderThickness > 0) {
+        shape.setOutlineColor(borderColor);
+        shape.setOutlineThickness(borderThickness);
+    }
 
     text.setFont(font);
     text.setString(label);
@@ -41,36 +46,21 @@ void Button::update(sf::RenderWindow &window) {
     if (shape.getGlobalBounds().contains(mousePosition)) {
         shape.setFillColor(hoverColor);
 
-        // change cursor
-        if (cursor.loadFromSystem(sf::Cursor::Hand)) {
-            window.setMouseCursor(cursor);
-        }
-
+        if (cursor.loadFromSystem(sf::Cursor::Hand)) window.setMouseCursor(cursor);
         hovered = true;
     }
     else {
         shape.setFillColor(primaryColor);
 
-        // change cursor
-        if (cursor.loadFromSystem(sf::Cursor::Arrow)) {
-            window.setMouseCursor(cursor);
-        }
-
+        if (cursor.loadFromSystem(sf::Cursor::Arrow)) window.setMouseCursor(cursor);
         hovered = false;
     }
 
     // clickkk
-    if (clicked) {
-        shape.setFillColor(clickColor);
-    }
-    else {
-        if (hovered) {
-            shape.setFillColor(hoverColor);
-        }
-        else {
-            shape.setFillColor(primaryColor);
-        }
-    }
+    if (clicked) shape.setFillColor(clickColor);
+    else if (hovered) shape.setFillColor(hoverColor);
+    else shape.setFillColor(primaryColor);
+
 }
 
 void Button::render(sf::RenderWindow &window) {
@@ -81,6 +71,7 @@ void Button::render(sf::RenderWindow &window) {
 void Button::handleEvent(const sf::Event &event) {
     if (hovered && event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
         clicked = true;
+        std::cout << std::endl << "clicked button!" << std::endl;
     }
     else {
         clicked = false;

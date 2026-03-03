@@ -9,6 +9,7 @@ class Button : public Widget {
     sf::Color hoverColor;
     sf::Color clickColor;
     sf::Color borderColor;
+    int borderThickness;
 
     bool hovered;
     bool clicked;
@@ -19,5 +20,5 @@ class Button : public Widget {
 public:
     void render(sf::RenderWindow &window) override;
     void handleEvent(const sf::Event &event) override;
-    Button(float x, float y, float width, float height, std::string label);
+    Button(float x, float y, float width, float height, std::string label, sf::Color borderColor = sf::Color::White, int borderThickness = 0);
 };

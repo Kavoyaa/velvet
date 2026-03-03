@@ -65,5 +65,5 @@ if(CMAKE_EXPORT_COMPILE_COMMANDS)
     )
 endif()
 
-add_executable(velvet_app examples/demo.cpp)
+add_executable(velvet_app src/main.cpp)
 target_link_libraries(velvet_app PRIVATE velvet)
