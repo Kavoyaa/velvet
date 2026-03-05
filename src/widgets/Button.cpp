@@ -22,6 +22,8 @@ Button::Button(float x, float y, float width, float height, std::string label, s
         shape.setOutlineThickness(borderThickness);
     }
 
+    font.loadFromFile("src/assets/arial.ttf");
+
     text.setFont(font);
     text.setString(label);
     text.setCharacterSize(20);
@@ -31,6 +33,22 @@ Button::Button(float x, float y, float width, float height, std::string label, s
     text.setOrigin(textBounds.left + textBounds.width / 2.0f, textBounds.top + textBounds.height / 2.0f);
 
     text.setPosition(x + width / 2.0f, y + height / 2.0f);
+}
+
+Button::Button(const Button& other)
+    : Widget(other),
+      shape(other.shape),
+      text(other.text),
+      primaryColor(other.primaryColor),
+      hoverColor(other.hoverColor),
+      clickColor(other.clickColor),
+      borderColor(other.borderColor),
+      borderThickness(other.borderThickness),
+      hovered(other.hovered),
+      clicked(other.clicked)
+{
+    // reassign font pointer to THIS object's font
+    text.setFont(font);
 }
 
 void Button::draw(sf::RenderWindow &window) {

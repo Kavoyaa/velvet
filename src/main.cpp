@@ -11,10 +11,10 @@ int main()
     };
 
 
+    sf::Cursor cursor;
     while (window.isOpen())
-    {   
+    {
         sf::Event event;
-        sf::Cursor cursor;
 
         while (window.pollEvent(event)) {
             if (cursor.loadFromSystem(sf::Cursor::Arrow)) window.setMouseCursor(cursor);
@@ -35,10 +35,7 @@ int main()
 
         window.clear(sf::Color(7, 7, 9));
 
-        // IDK WHY THE TEXT DOESNT RENDER
-        // RUSHIL PLEASE FIX THIS SHIT MERE SE NAW HORA
-        // FIGURE IT OUT YOU CAN DO IT
-        // GAMBARE GAMBARE SENPAI
+        // fixed ;)
         for (Button& widget : widgets) {
             widget.render(window);
         }

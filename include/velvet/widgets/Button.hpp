@@ -21,4 +21,6 @@ public:
     void render(sf::RenderWindow &window) override;
     void handleEvent(const sf::Event &event) override;
     Button(float x, float y, float width, float height, std::string label, sf::Color borderColor = sf::Color::White, int borderThickness = 0);
+    
+    Button(const Button& other);
 };
