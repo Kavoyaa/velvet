@@ -11,7 +11,9 @@ class Window {
 public:
     Window(int width, int height, const std::string& title)
         : window(sf::VideoMode(width, height), title),
-          backgroundColor(sf::Color(7, 7, 9)) {}
+          backgroundColor(sf::Color(7, 7, 9)) {
+            window.setFramerateLimit(60);
+          }
 
     void setBackgroundColor(sf::Color color) { backgroundColor = color; }
 

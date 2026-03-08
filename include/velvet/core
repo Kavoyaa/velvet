@@ -4,8 +4,9 @@
 
 //////// core system ////////
 #include <velvet/base/Widget.hpp>
-#include <velvet/base/VStack.hpp>
-#include <velvet/base/HStack.hpp>
+
 
 //////// core widgets (always available) ////////
+#include <velvet/widgets/VStack.hpp>
+#include <velvet/widgets/HStack.hpp>
 #include <velvet/widgets/Button.hpp>

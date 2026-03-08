@@ -127,6 +127,6 @@ void Button::setPosition(float x, float y) {
     text.setPosition(x + width / 2.0f, y + height / 2.0f);
 }
 
-sf::Vector2<float> Button::getBounds() {
-    return sf::Vector2<float>(width, height);
+sf::Vector2<float> Button::getDimensions() {
+    return sf::Vector2f(width, height);
 }

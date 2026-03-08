@@ -16,5 +16,5 @@ public:
     virtual void handleEvent(const sf::Event &event);
     virtual void render(sf::RenderWindow &window);
     virtual void setPosition(float x, float y) = 0;
-    virtual sf::Vector2<float> getBounds() = 0;
+    virtual sf::Vector2<float> getDimensions() = 0;
 };
