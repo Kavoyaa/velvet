@@ -1,6 +1,10 @@
 #include <velvet/core>
+#include <iostream>
 
-///*
+void extremelysad(const std::string s) {
+    std::cout << "bottom of the morning " + s + "\n"; 
+}
+
 int main() {
     Window window(800, 600, "Velvet");
 
@@ -16,19 +20,12 @@ int main() {
     root.add(&btn2);
     root.add(&s2);
 
+    btn.onclick = [] { std::cout << "top of the morning :D\n"; };
+
+    btn2.onclick = [] { 
+        extremelysad("T_T");
+    };
+
     window.add(&root);
     window.run();
 }
-//*/
-
-/*
-int main() {
-    Window window(800, 600, "Velvet");
-
-    Slider s(200, 0, 100);
-    window.add(&s);
-
-    //window.add(&root);
-    window.run();
-}
-*/

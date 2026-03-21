@@ -5,6 +5,8 @@
 #include <iostream>
 
 Button::Button(float width, float height, std::string label, sf::Color borderColor, int borderThickness) : height(height), width(width) {
+    x = 0;
+    y = 0;
     hovered = false;
     clicked = false;
 
@@ -115,7 +117,8 @@ void Button::render(sf::RenderWindow &window) {
 void Button::handleEvent(const sf::Event &event, sf::RenderWindow &window) {
     if (hovered && event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
         clicked = true;
-        std::cout << std::endl << "clicked button!" << std::endl;
+        // std::cout << std::endl << "clicked button!" << std::endl;
+        if (onclick) onclick();
     }
     else {
         clicked = false;
