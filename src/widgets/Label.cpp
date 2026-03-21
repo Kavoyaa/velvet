@@ -35,5 +35,6 @@ void Label::setPosition(float x, float y) {
 sf::Vector2f Label::getDimensions() {
     sf::FloatRect textBounds = LText.getLocalBounds();
 
-    return sf::Vector2f(textBounds.width, textBounds.height);
+
+    return sf::Vector2f(textBounds.width + textBounds.left, textBounds.height + textBounds.top);
 }
