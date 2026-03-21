@@ -94,9 +94,9 @@ public:
         return sf::Vector2f(cachedWidth, cachedHeight);
     }
 
-    void handleEvent(const sf::Event& event) override {
+    void handleEvent(const sf::Event& event, sf::RenderWindow &window) override {
         for (Widget* child : children) {
-            child->handleEvent(event);
+            child->handleEvent(event, window);
         }
     }
 

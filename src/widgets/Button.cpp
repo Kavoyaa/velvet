@@ -112,7 +112,7 @@ void Button::render(sf::RenderWindow &window) {
     draw(window);
 }
 
-void Button::handleEvent(const sf::Event &event) {
+void Button::handleEvent(const sf::Event &event, sf::RenderWindow &window) {
     if (hovered && event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
         clicked = true;
         std::cout << std::endl << "clicked button!" << std::endl;

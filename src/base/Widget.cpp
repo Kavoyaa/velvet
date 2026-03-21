@@ -6,7 +6,7 @@ Widget::Widget() {
 
 void Widget::draw(sf::RenderWindow &window) {}
 
-void Widget::handleEvent(const sf::Event &event) {}
+void Widget::handleEvent(const sf::Event &event, sf::RenderWindow &window) {}
 
 void Widget::render(sf::RenderWindow &window) {
     update(window);

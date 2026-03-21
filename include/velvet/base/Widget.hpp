@@ -13,7 +13,7 @@ protected:
 public:
     sf::Font font;
     Widget();
-    virtual void handleEvent(const sf::Event &event);
+    virtual void handleEvent(const sf::Event &event, sf::RenderWindow &window);
     virtual void render(sf::RenderWindow &window);
     virtual void setPosition(float x, float y) = 0;
     virtual sf::Vector2<float> getDimensions() = 0;

@@ -11,7 +11,7 @@ class Window {
 public:
     Window(int width, int height, const std::string& title)
         : window(sf::VideoMode(width, height), title),
-          backgroundColor(sf::Color(7, 7, 9)) {
+          backgroundColor(sf::Color(230, 230, 230)) {
             window.setFramerateLimit(60);
           }
 
@@ -38,7 +38,7 @@ public:
                 }
 
                 for (Widget* w : widgets)
-                    w->handleEvent(event);
+                    w->handleEvent(event, window);
             }
             window.clear(backgroundColor);
 

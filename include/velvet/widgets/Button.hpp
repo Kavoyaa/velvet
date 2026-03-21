@@ -28,7 +28,7 @@ class Button : public Widget {
 
 public:
     void render(sf::RenderWindow &window) override;
-    void handleEvent(const sf::Event &event) override;
+    void handleEvent(const sf::Event &event, sf::RenderWindow &window) override;
     Button(float width=100, float height=50, std::string label="button", sf::Color borderColor = sf::Color::White, int borderThickness = 0);
     Button(const Button& other);
     void setPosition(float x, float y) override;
