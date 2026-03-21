@@ -1,6 +1,8 @@
 #include <SFML/Graphics/Color.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/System/Vector2.hpp>
+#include <SFML/Window/Event.hpp>
+#include <iostream>
 #include <velvet/widgets/Slider.hpp>
 
 Slider::Slider(float size, float from, float to) {
@@ -49,23 +51,28 @@ void Slider::render(sf::RenderWindow &window) {
 }
 
 void Slider::handleEvent(const sf::Event &event, sf::RenderWindow &window) {
+    
+    if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left && hovered)
+        thumbBeingPressed = true;
 
-    if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left && hovered) {
-        /*
-        NOTE!!!
-            all the code in the block below should be inside the changeValue() function
-            but ive put it here rn cuz havnt implemented the logic for calculating slider's value yet
-        */
+    if (event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left)
+        thumbBeingPressed = false;
 
+
+    if (thumbBeingPressed && event.type == sf::Event::MouseMoved) {
 
         sf::Vector2f mousePos = window.mapPixelToCoords(sf::Mouse::getPosition(window));
         sf::Vector2 sliderPos = inactive_part.getPosition();
         
-        active_part.setSize(sf::Vector2f(mousePos.x - sliderPos.x, thickness));
+        float minX = sliderPos.x;
+        float maxX = sliderPos.x + length - 10;  // -10 for thumb width
+        float clampedX = std::max(minX, std::min(mousePos.x - 10, maxX));
+        
+        active_part.setSize(sf::Vector2f(clampedX - sliderPos.x + 10, thickness));
+        thumb.setPosition(sf::Vector2f(clampedX, thumb.getPosition().y));
 
-        thumb.setPosition(sf::Vector2f(mousePos.x-10, thumb.getPosition().y)); // -10 cuz thats half of the thumb thickness, its hardcoded rn cuz idk man mon dieu
-
-        changeValue(0);
+        // std::cout << "VALUE: " << minX + clampedX / maxX << " \n";
+        changeValue(minX + clampedX / maxX);
     }
 }
 
