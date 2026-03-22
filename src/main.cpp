@@ -17,9 +17,21 @@ int main() {
     Slider s1(200, 0, 100);
     Slider s2(300, 42, 67);
 
-    Label l1("hello", 25);
-    Label l2("hello", 50);
-    Label l3("hello", 100);
+    Label l1("hello", {
+        {"fontSize", 50.f}
+    });
+
+    Label l2("hello in red", {
+        {"fontSize", 75.f},
+        {"fillColor", 0xFF0000FFu}
+    });
+
+    Label l3("hello with outline", {
+        {"fontSize", 75.f},
+        {"fillColor", 0xFF00FFFFu},
+        {"outlineThickness", 3.f},
+        {"outlineColor", 0x00FF00FFu}
+    });
 
     Image img("src/assets/funnycat.png");
     img.setScale(0.5, 0.5);
@@ -33,6 +45,10 @@ int main() {
         extremelysad("T_T");
         l2.setText("good morning america " + std::to_string(i));
         i++;
+
+        l2.overrideStyling({
+            {"fillColor", 0x0000FFFFu}
+        });
     };
 
     window.add(root);

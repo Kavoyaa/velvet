@@ -4,15 +4,31 @@
 #include <velvet/widgets/Label.hpp>
 #include <iostream>
 
-Label::Label(std::string text, int fontSize) {
-    if (!font.loadFromFile("src/assets/space-grotesk.ttf")) {
-        std::cerr << "Warning: failed to load font src/assets/space-grotesk.ttf" << std::endl;
+Label::Label(std::string text, std::unordered_map<std::string, std::variant<unsigned int, float>> styling) {
+    std::string fontPath = "src/assets/AdwaitaSans-Regular.ttf";
+    if (!font.loadFromFile(fontPath)) {
+        std::cerr << "\033[33mWarning: Failed to load font: '" << fontPath << "'\033[0m" << std::endl;
     }
+
+    for (auto& [key, val] : styling) {
+        if(styles.contains(key)) {
+            styles[key] = val;
+        }
+        else {
+            std::cerr << "\033[33mWarning: Invalid style property: '" << key << "'\033[0m" << std::endl;
+       }
+    } 
 
     LText.setFont(font);
     LText.setString(text);
-    LText.setCharacterSize(fontSize);
-    LText.setFillColor(sf::Color::Black);
+    // LText.setStyle(sf::Text::Bold);
+
+    LText.setCharacterSize(std::get<float>(styles.at("fontSize")));
+    LText.setLineSpacing(std::get<float>(styles.at("lineSpacing")));
+    LText.setLetterSpacing(std::get<float>(styles.at("letterSpacing")));
+    LText.setFillColor(sf::Color(std::get<unsigned int>(styles.at("fillColor"))));
+    LText.setOutlineColor(sf::Color(std::get<unsigned int>(styles.at("outlineColor"))));
+    LText.setOutlineThickness(std::get<float>(styles.at("outlineThickness")));
 
     LText.setPosition(x, y);
 }
@@ -42,4 +58,23 @@ sf::Vector2f Label::getDimensions() {
 
 
     return sf::Vector2f(textBounds.width + textBounds.left, textBounds.height + textBounds.top);
+}
+
+void Label::overrideStyling(std::unordered_map<std::string, std::variant<unsigned int, float>> styling) {
+
+    for (auto& [key, val] : styling) {
+        if(styles.contains(key)) {
+            styles[key] = val;
+        }
+        else {
+            std::cerr << "\033[33mWarning: Invalid style property: '" << key << "'\033[0m" << std::endl;
+       }
+    } 
+
+    LText.setCharacterSize(std::get<float>(styles.at("fontSize")));
+    LText.setLineSpacing(std::get<float>(styles.at("lineSpacing")));
+    LText.setLetterSpacing(std::get<float>(styles.at("letterSpacing")));
+    LText.setFillColor(sf::Color(std::get<unsigned int>(styles.at("fillColor"))));
+    LText.setOutlineColor(sf::Color(std::get<unsigned int>(styles.at("outlineColor"))));
+    LText.setOutlineThickness(std::get<float>(styles.at("outlineThickness")));
 }
