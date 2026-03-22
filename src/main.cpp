@@ -40,7 +40,7 @@ int main() {
     });
 
     Label bleh("Counter: 0");
-    Label lol("this cat is very precious. take care of it, traveller.",
+    Label lol("this cat is very precious. take good care of it, traveller.",
     {
         {"fontStyle", "italic"}
     });

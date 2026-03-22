@@ -13,12 +13,8 @@ int main() {
     Window window(800, 600, "My App");
     VStack root(10);
     
-    Label l1("Hello, Velvet!", 48);
-    Button btn(100, 50, "click me!");
-    
-    btn.onclick = [] {
-        std::cout << "button was clicked \n";
-    };
+    Label l1("Hello, Velvet!", { {"fontSize", 48.f} });
+    Button btn(200, 50, "click me!");
 
     root.add(l1, btn);
     window.add(root);
@@ -28,6 +24,16 @@ int main() {
     return 0;
 }
 ```
+Output:
+
+<img 
+    align="center" 
+    src="https://i.ibb.co/zWRtXQcq/shot-2026-03-22-13-26-39.png" 
+    alt="velvet_output_img">
+
+what you can get with a bit more effort:
+
+<img src="https://i.ibb.co/21jW7mC9/image.png" alt="image" border="0">
 
 ## Get started
 
