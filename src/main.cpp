@@ -18,13 +18,11 @@ int main() {
     Slider s2(300, 42, 67);
 
     Label l1("hello", {
-        {"fontSize", 50.f}
+        {"fontSize", 50.f},
+        {"fontStyle", "italic"}
     });
 
-    Label l2("hello in red", {
-        {"fontSize", 75.f},
-        {"fillColor", 0xFF0000FFu}
-    });
+    Label l2("hello in red");
 
     Label l3("hello with outline", {
         {"fontSize", 75.f},
