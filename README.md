@@ -5,6 +5,7 @@ A beginner-friendly GUI framework built on SFML for creating beautiful desktop a
 Instead of dealing with low-level frameworks directly, Velvet provides high-level components like buttons, sliders, and layout systems _that just work_. It handles rendering, layout, and interaction internally so you can focus on building your app.
 
 ## Quick example usage
+
 ```cpp
 
 #include <velvet/core>
@@ -24,14 +25,12 @@ int main() {
     return 0;
 }
 ```
-Output:
 
-<img 
-    align="center" 
-    src="https://i.ibb.co/zWRtXQcq/shot-2026-03-22-13-26-39.png" 
-    alt="velvet_output_img">
+| raw | styled |
+| :--- | :--- |
+<img src="https://i.ibb.co/xtdjv4pV/image.png" alt="image" border="0"> | <img align="center" src="https://i.ibb.co/zWRtXQcq/shot-2026-03-22-13-26-39.png" alt="velvet_output_img"> 
 
-what you can get with a bit more effort:
+a bit more effort:
 
 <img src="https://i.ibb.co/21jW7mC9/image.png" alt="image" border="0">
 
